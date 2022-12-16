@@ -9,7 +9,7 @@ m_disconnect = "disconnect"
 m_reset = "reset"
 
 defaut_host = "localhost"
-defaut_port = 7456
+defaut_port = 7457
 
 message_client = ""
 
@@ -35,11 +35,11 @@ def ram():
     meml = psutil.virtual_memory()[4]/1000000000
     return f"la mémoire total du système est de {memd} Go, la mémoire utilisé est de {memu} Go, son pourcentage est de {ram}%, l'espace mémoire libre est de {meml} Go "
 
+
 def ip():
     hostname = socket.gethostname()
     IPAddr = socket.gethostbyname(hostname)
     return IPAddr
-
 
 
 def execute_cmd(cmd):
@@ -66,35 +66,8 @@ def execute_cmd(cmd):
         print(f"{rep}")
 
     elif cmd[0:4] == "DOS:":
-
         x = cmd.split(":")[1]
-
-        output = str(subprocess.check_output(x, shell=True).decode("cp850"))
-
-        return f"{output}"
-
-    elif cmd[0:6] == "LINUX:":
-
-        x = cmd.split(":")[1]
-
-        output = str(subprocess.check_output(x, shell=True).decode("cp850"))
-
-        return f"{output}"
-
-    elif cmd[0:6] == "MACOS:":
-
-        x = cmd.split(":")[1]
-
-        output = str(subprocess.check_output(x, shell=True).decode("cp850"))
-
-        return f"{output}"
-
-    elif cmd[0:11] == "POWERSHELL:":
-
-        x = cmd.split(":")[1]
-
-        output = str(subprocess.check_output(x, shell=True).decode("cp850"))
-
+        output = str(subprocess.check_output(x,shell=True).decode("cp850"))
         return f"{output}"
 
     elif cmd[0:4] == "ping":
@@ -107,9 +80,6 @@ def execute_cmd(cmd):
 
     return rep
 
-
-def windows():
-    pass
 
 def serveur(host, port):
     #mon_nom = name()

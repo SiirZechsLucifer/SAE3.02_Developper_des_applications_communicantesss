@@ -3,8 +3,7 @@ import socket
 
 def server():
     host = 'localhost'
-    port = 802
-
+    port = 7457
     server_socket = socket.socket()
     server_socket.bind((host, port))
 
@@ -24,8 +23,6 @@ def server():
         data = input(' -> ')
         conn_client.send(data.encode())
     conn_client.close()
-
-
 
 
 if __name__ == '__main__':
