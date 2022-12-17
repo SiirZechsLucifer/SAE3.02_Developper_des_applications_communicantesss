@@ -108,8 +108,8 @@ def execute_cmd(cmd):
     return rep
 
 
-def windows():
-    pass
+#def windows():
+    #pass
 
 def serveur(host, port):
     #mon_nom = name()

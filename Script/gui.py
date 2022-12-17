@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import QWidget, QGridLayout, QTextEdit, QLineEdit, QPushButton, QApplication, QMainWindow
+from PyQt5.QtWidgets import QWidget, QTabWidget, QGridLayout, QLabel, QTextEdit, QLineEdit, QPushButton, QApplication, \
+    QMainWindow
 import sys
 import threading
-
 import socket
 
 
@@ -60,11 +60,10 @@ class client_window(QMainWindow):
     def __ecoute(self):
         while not self.__arret:
             try:
-                data = self.__client_socket.recv(1024).decode("utf-8")
-                print(f"Received from server: " + f"{data}")
+                data = self.__client_socket.recv(1024).decode()
                 if data is not None:
                     if len(data) > 0:
-                        self.__terminal.setText(self.__terminal.append(f"Received from server: " + data) + '\n')
+                        self.__terminal.setText(self.__terminal.text() + data + '\n')
             except:
                 pass
 
@@ -75,7 +74,7 @@ class client_window(QMainWindow):
             try:
                 self.__client_socket.send(commande.encode())
             except:
-                self.__terminal.setText(self.__terminal.append('Connection perdue\n'))
+                self.__terminal.setText(self.__terminal.text() + 'Connection perdue\n')
 
     def closeEvent(self, event):
         self.__client_socket.close()
@@ -83,7 +82,6 @@ class client_window(QMainWindow):
         event.accept()
 
 
-# Fermeture de la socket du client
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = client_window()
